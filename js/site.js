@@ -253,6 +253,20 @@
   });
   syncScheme();
 
+  /* In-page links scroll without adding #section to the address bar */
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest('a[href^="#"]');
+    if (!link || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    var target = document.getElementById(link.getAttribute('href').slice(1));
+    if (!target) return;
+    event.preventDefault();
+    if (target.id === 'top') window.scrollTo({ top: 0 });
+    else target.scrollIntoView();
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  });
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+
   /* Scroll reveal for static sections */
   document.querySelectorAll('.service, .about-grid > *').forEach(function (node) {
     node.classList.add('reveal');

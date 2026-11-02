@@ -46,6 +46,7 @@ p { margin: 0; }
 a { color: inherit; }
 button { font: inherit; color: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+[tabindex="-1"]:focus { outline: none; }
 
 .wrap { width: min(1200px, 100% - 48px); margin-inline: auto; }
 .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--paper); padding: 8px 14px; z-index: 30; }
