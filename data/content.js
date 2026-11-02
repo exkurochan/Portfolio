@@ -12,7 +12,7 @@ window.PORTFOLIO = {
     "email": "christiantamonn1@gmail.com",
     "github": "https://github.com/exkurochan",
     "linkedin": "https://www.linkedin.com/in/chrstntmn/",
-    "phone": "+63 956 8358 343",
+    "phone": "+63 956 835 8343",
     "facebook": "https://www.facebook.com/exkurochan/",
     "stack": [
       {
