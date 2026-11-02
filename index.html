@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Developer Portfolio</title>
+  <meta name="description" content="Portfolio of a web developer: selected websites, services and how to get in touch.">
+  <script>
+    (function () {  
+      var prefs = {};
+      try { prefs = JSON.parse(localStorage.getItem('portfolio.prefs')) || {}; } catch (e) {}
+      var root = document.documentElement;
+      root.dataset.theme = prefs.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      root.dataset.accent = prefs.accent || 'cobalt';
+      if (prefs.radius != null) root.style.setProperty('--r', prefs.radius + 'px');
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+</head>
+<body>
+  <a class="skip" href="#work">Skip to projects</a>
+
+  <div class="draft-bar" id="draftBar" hidden>
+    Previewing unsaved changes. Only you can see them.
+    <a href="manage.html">Open Manage to save</a>
+  </div>
+
+  <header class="nav">
+    <a class="nav-name" href="#top" data-bind="name"></a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="status"><span class="dot" aria-hidden="true"></span><span data-bind="availability"></span></p>
+        <h1 data-bind="headline"></h1>
+        <p class="lede" data-bind="intro"></p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#work">See my work</a>
+          <a class="btn" href="#contact">Start a project</a>
+        </div>
+      </div>
+
+      <aside class="editor" aria-label="Live style editor for this page">
+        <div class="editor-bar">
+          <span class="editor-file">this-page.css</span>
+          <span class="editor-live">live</span>
+        </div>
+        <div class="editor-body">
+          <p class="code-line"><span class="c-sel">:root</span> {</p>
+          <div class="code-line code-row">
+            <span class="c-prop" id="accentLabel">--accent:</span>
+            <div class="swatches" role="radiogroup" aria-labelledby="accentLabel" id="swatches">
+              <button type="button" role="radio" data-accent="cobalt" aria-label="Cobalt"></button>
+              <button type="button" role="radio" data-accent="vermilion" aria-label="Vermilion"></button>
+              <button type="button" role="radio" data-accent="forest" aria-label="Forest"></button>
+              <button type="button" role="radio" data-accent="violet" aria-label="Violet"></button>
+            </div>
+          </div>
+          <div class="code-line code-row">
+            <label class="c-prop" for="radius">--radius:</label>
+            <input id="radius" type="range" min="0" max="28" step="1">
+            <output class="c-val" id="radiusOut" for="radius"></output>
+          </div>
+          <div class="code-line code-row">
+            <span class="c-prop" id="schemeLabel">color-scheme:</span>
+            <div class="scheme" role="group" aria-labelledby="schemeLabel" id="scheme">
+              <button type="button" data-theme-choice="light">light</button>
+              <button type="button" data-theme-choice="dark">dark</button>
+            </div>
+          </div>
+          <p class="code-line">}</p>
+        </div>
+        <p class="editor-note">Go on, change it. The whole page follows.</p>
+      </aside>
+    </section>
+
+    <section class="section wrap" id="work">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <div class="filters" id="filters" role="group" aria-label="Filter projects by technology"></div>
+      </div>
+      <div class="projects" id="projects"></div>
+      <p class="empty" id="emptyProjects" hidden>New projects are on their way.</p>
+    </section>
+
+    <section class="section wrap" id="services">
+      <div class="section-head section-head-stack">
+        <h2>Services</h2>
+        <p class="section-intro">Fast, secure websites and stores that turn visitors into customers.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4.5 8.5h15l-1.3 11a1.7 1.7 0 0 1-1.7 1.5h-9a1.7 1.7 0 0 1-1.7-1.5z"/><path d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4"/></svg>
+          </span>
+          <h3>Shopify Development</h3>
+          <p>Shopify stores built to sell, with a clean theme, a smooth checkout and apps that fit how you work.</p>
+          <ul class="checks">
+            <li>Custom store design</li>
+            <li>Theme customization</li>
+            <li>App integration</li>
+            <li>Payment and shipping setup</li>
+          </ul>
+          <a class="service-link" href="#contact">Ask about Shopify <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="service">
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a1.5 1.5 0 0 0 1.5 1.1h8.9a1.5 1.5 0 0 0 1.5-1.1L21 7H6"/></svg>
+          </span>
+          <h3>E-commerce Development</h3>
+          <p>Online stores built around your products, with secure checkout and the reports you need to grow.</p>
+          <ul class="checks">
+            <li>Custom e-commerce builds</li>
+            <li>Product and inventory management</li>
+            <li>Secure checkout</li>
+            <li>Analytics and reporting</li>
+          </ul>
+          <a class="service-link" href="#contact">Ask about e-commerce <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="service">
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5"/><path d="M16 7l5 5-5 5"/><path d="M14 4l-4 16"/></svg>
+          </span>
+          <h3>Custom Website Development</h3>
+          <p>Websites designed and coded around your brand, fast on every device and easy to keep up to date.</p>
+          <ul class="checks">
+            <li>Custom design and development</li>
+            <li>Responsive, mobile-first layout</li>
+            <li>Speed and SEO optimization</li>
+            <li>Ongoing support</li>
+          </ul>
+          <a class="service-link" href="#contact">Ask about a custom site <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap about" id="about">
+      <div class="section-head"><h2>About</h2></div>
+      <div class="about-grid">
+        <p class="about-text" data-bind="about"></p>
+        <dl class="stack" id="stack"></dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <p class="contact-kicker">Have a website in mind?</p>
+          <h2>Stay connected</h2>
+          <div class="socials" id="socials">
+            <a data-link="facebook" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.45 18.63.07 12 .07S0 5.45 0 12.07c0 5.99 4.39 10.96 10.13 11.86v-8.39H7.08v-3.47h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87v2.25h3.33l-.53 3.47h-2.8v8.39C19.61 23.03 24 18.06 24 12.07z"/></svg>
+            </a>
+            <a data-link="linkedin" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a data-link="github" aria-label="GitHub" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57l-.02-2.04c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="reach" id="reach">
+          <p class="contact-kicker">Reach me via</p>
+          <button type="button" class="reach-row" data-contact="email" title="Click to copy">
+            <span class="reach-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3 6.5l9 6.5 9-6.5"/></svg></span>
+            <span class="reach-text"></span>
+          </button>
+          <button type="button" class="reach-row" data-contact="phone" title="Click to copy">
+            <span class="reach-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.96.35 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.1-.45c.9.35 1.84.6 2.8.7a2 2 0 0 1 1.73 2z"/></svg></span>
+            <span class="reach-text"></span>
+          </button>
+          <p class="reach-status" id="copyStatus" role="status"></p>
+        </div>
+      </div>
+      <div class="foot">
+        <span>© <span id="year">2026</span> <span data-bind="name"></span>. <span data-bind="role"></span>. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/content.js?v=4"></script>
+  <script src="js/store.js?v=4"></script>
+  <script src="js/site.js?v=4"></script>
+</body>
+</html>
